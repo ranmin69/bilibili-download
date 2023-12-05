@@ -5,7 +5,7 @@
 
 ## 运行环境：
 1. Deno 1.38.2 及以上版本;
-2. FFmpeg 6.1 (由于哔哩哔哩 视频 和 音频 是分开的，下载后需要合并，如果不想合并，可以不下载 FFmpeg)
+2. FFmpeg 6.1 (由于哔哩哔哩 视频 和 音频 是分开的，下载后需要合并，如果不想合并，可以不下载 FFmpeg)；
 3. Mac Os（windows 应该也行，没试）。
 
 ## 安装教程：
@@ -23,7 +23,7 @@ deno install -f --allow-all --name bili <入口文件路径（index.js）>
 ## 使用说明：
 1.  <font color=orangered>**第一次使用前请先设置 cookie**</font> <br/>如果不设置cookie，也可以下载，但分辨率很低。
 ```shell
-bili --cookie 'your cookie...'
+bili --cookie 'your cookie...(请求头cookie)'
 ```
 2. 下载视频
 ```shell
