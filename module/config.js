@@ -7,7 +7,7 @@ export default {
   },
   baseCidApi: "https://api.bilibili.com/x/web-interface/view",
   baseAllVideoUrlApi: "https://api.bilibili.com/x/player/wbi/playurl?qn=120&fourk=1&fnver=0&fnval=4048",
-  args: ['--cookie', '--url', '--bitch'],
+  args: ['--cookie', '--url'],
   video: {
     120: "超清4K",
     112: "高清1080P+",
