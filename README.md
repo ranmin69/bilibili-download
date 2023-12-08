@@ -27,7 +27,7 @@ bili --cookie 'your cookie...(请求头cookie)'
 ```
 2. 下载视频
 ```shell
-bili --url 'https://www.bilibili.com/video/BV1zE41197kV\?p\=17\&vd_source\=a3309e57c732073f94bc3088bdc0bf96' 
+bili --url 'https://www.bilibili.com/video/BV1zE41197kV?p=17&vd_source=a3309e57c732073f94bc3088bdc0bf96' 
 ```
 
 ### 参考资料:
