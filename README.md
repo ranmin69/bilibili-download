@@ -27,11 +27,14 @@ bili --cookie 'your cookie...(请求头cookie)'
 ```
 2. 下载视频
 ```shell
-bili --url 'https://www.bilibili.com/video/BV1zE41197kV?p=17&vd_source=a3309e57c732073f94bc3088bdc0bf96' 
+bili --url 'https://www.bilibili.com/video/BV1zE41197kV?p=17&vd_source=a3309e57c732073f94bc3088bdc0bf96(要下载的视频链接)' 
 ```
 
 ### 参考资料:
-https://www.bilibili.com/read/cv6415114/
-https://juejin.cn/post/7253969759191023675
-https://stackoverflow.com/questions/64398431/how-to-console-log-without-a-newline-in-deno
-https://www.cnblogs.com/taohuaya/p/16427408.html
+*https://www.bilibili.com/read/cv6415114*
+
+*https://juejin.cn/post/7253969759191023675*
+
+*https://stackoverflow.com/questions/64398431/how-to-console-log-without-a-newline-in-deno*
+
+*https://www.cnblogs.com/taohuaya/p/16427408.html*
