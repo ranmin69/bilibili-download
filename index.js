@@ -53,14 +53,17 @@ async function download(url) {
       codecs: audioFormat
     } = videoInfo.data.dash.audio[0];
 
+    const pid = Deno.pid;
+
     console.log(`开始下载音频（${audioFormat}）⌛`);
-    await getMedia(audioUrl, 'audio');
+    await getMedia(audioUrl, pid, 'audio');
+
     console.log(`开始下载视频（${videoFormat}）⌛`);
     console.log(`🎞  下载分辨率：${emphasis(`${ curWidth } × ${ curHeight }`)}`);
-    await getMedia(videoUrl, 'video');
+    await getMedia(videoUrl, pid, 'video');
 
     console.log('开始合并音视频⌛');
-    await mergeAudioVideo(videoName);
+    await mergeAudioVideo(videoName, pid);
     console.log(success('合并完成 🎉 🎉 🎉'));
 
     console.log(box(cwd()));

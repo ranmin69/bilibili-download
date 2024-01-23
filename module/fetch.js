@@ -42,14 +42,15 @@ const getVideoInfo = async (cid, bvid) => {
 /**
  * 获取媒体流并同时写入磁盘（边下边写形式）
  * @param mediaUrl 媒体 url
+ * @param pid 当前进程 ID
  * @param type mp4 or mp3
  * @returns {Promise<void>}
  */
-const getMedia = async (mediaUrl, type) => {
+const getMedia = async (mediaUrl, pid, type) => {
   const typeMap = { video: 'mp4', audio: 'mp3' };
   const mediaStream = await fetch(mediaUrl, { method: 'GET', headers: config.headers });
   const total = mediaStream.headers.get('content-length');
-  const savePath = await create(`${ cwd() }/${type}.${typeMap[type]}`);
+  const savePath = await create(`${ cwd() }/${pid}${type}.${typeMap[type]}`);
   await speedAndSave(mediaStream, total, savePath);
 }
 

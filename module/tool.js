@@ -59,12 +59,15 @@ const speedAndSave = async (stream, total, savePath) => {
 /**
  * 运行 ffmpeg 子进程 合并音视频
  * 合并完成后，删除原音视频
- * @param title
+ * @param title 视频名称
+ * @param pid 进程 ID
  * @returns {Promise<void>}
  */
-const mergeAudioVideo = async (title) => {
+const mergeAudioVideo = async (title, pid) => {
   const path = cwd();
-  const [videoPath, audioPath, outputPath] = [`${path}/video.mp4`, `${path}/audio.mp3`, `${path}/${title}.mp4`]
+  const commitPath = `${path}/${pid}`
+  const [videoPath, audioPath, outputPath] =
+      [`${commitPath}video.mp4`, `${commitPath}audio.mp3`, `${path}/${title}.mp4`]
   const args = ([
     "-i", audioPath,
     "-i", videoPath,
