@@ -1,15 +1,14 @@
 
-const { cwd, args } = Deno;
-import { getCid, getMedia, getVideoInfo } from "./module/fetch.js";
-import {danger, emphasis, success} from "./module/colorLog.js";
-import { getArg, getBVidAndP, mergeAudioVideo } from "./module/tool.js";
+const { args } = Deno;
+
+import { getArg } from "./module/tool.js";
 import { getCookie, setCookie } from "./module/cookie.js";
-import { box } from './module/text.js'
+import download from './module/download.js'
+import userVideo from "./module/userVideo.js";
 
 import config from "./module/config.js";
 const { headers, args: arrArgs } = config;
-
-const { urlIndex, cookieIndex } = getArg(args, arrArgs);
+const { urlIndex, cookieIndex, userIndex } = getArg(args, arrArgs);
 
 /**
  * 设置 cookie
@@ -25,53 +24,12 @@ headers.cookie = getCookie()
 /**
  * 判断 有URL，则下载视频。
  */
-urlIndex ? await download(args[urlIndex]) : null
+urlIndex ? await download(args[urlIndex]) : null;
 
 /**
- * 下载视频主流程
- * @param url
- * @returns {Promise<void>}
+ * 判断是否是下载 所有视频
  */
-async function download(url) {
-  try {
-    const { P, bvid } = getBVidAndP(url);
-    const { title, pages } = await getCid(bvid);
-    const { dimension: { width, height }, part, cid } = pages.find(i => i.page === P);
-    const videoName = `${title}${P === 1 ? '' : `-${part}`}`;
-    console.log(`📽  名称: ${emphasis(`${videoName}`)}`);
-    console.log(`🎞  原分辨率：${emphasis(`${ width } × ${ height }`)}`);
-
-    const videoInfo = await getVideoInfo(cid, bvid);
-    const {
-      baseUrl: videoUrl,
-      codecs: videoFormat,
-      width: curWidth,
-      height: curHeight
-    } = videoInfo.data.dash.video[0];
-    const {
-      baseUrl: audioUrl,
-      codecs: audioFormat
-    } = videoInfo.data.dash.audio[0];
-
-    const pid = Deno.pid;
-
-    console.log(`开始下载音频（${audioFormat}）⌛`);
-    await getMedia(audioUrl, pid, 'audio');
-
-    console.log(`开始下载视频（${videoFormat}）⌛`);
-    console.log(`🎞  下载分辨率：${emphasis(`${ curWidth } × ${ curHeight }`)}`);
-    await getMedia(videoUrl, pid, 'video');
-
-    console.log('开始合并音视频⌛');
-    await mergeAudioVideo(videoName, pid);
-    console.log(success('合并完成 🎉 🎉 🎉'));
-
-    console.log(box(cwd()));
-  } catch (e) {
-    console.log(danger(e))
-  }
-}
-
+userIndex ? userVideo(args[userIndex]) : null;
 
 /**
  * 模仿 浏览器环境 使用 ffmpeg.wasm 来完成音视频合并，始终搞不定，垃圾Deno 😂。

@@ -54,15 +54,29 @@ const getMedia = async (mediaUrl, pid, type) => {
   await speedAndSave(mediaStream, total, savePath);
 }
 
+/**
+ *
+ * @param url
+ * @returns {Promise<void>}
+ */
+const getUserAllVideo = async (url) => {
+  console.log(url);
+  const res = await fetch(url, { method: 'GET', headers: config.headers });
+  const { data: { list: { vlist } } } = await res.json()
+  return vlist.map(item => item.bvid)
+}
+
 const fetchFn = {
   getCid,
   getVideoInfo,
-  getMedia
+  getMedia,
+  getUserAllVideo
 }
 
 export {
   fetchFn as default,
   getCid,
   getVideoInfo,
-  getMedia
+  getMedia,
+  getUserAllVideo
 }

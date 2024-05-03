@@ -7,7 +7,7 @@ import { emphasis } from "./colorLog.js";
  * @param urlStr
  * @returns {{P: number, bvid: string}}
  */
-const getBVidAndP = (urlStr) => {
+const getBVIdAndP = (urlStr) => {
   const url = urlStr.replaceAll('\\', '');
   const BVIndex = url.indexOf('BV');
   const bvid = url.slice(BVIndex, BVIndex + 12);
@@ -87,7 +87,7 @@ const mergeAudioVideo = async (title, pid) => {
  * @param args
  * @returns {Promise<void>}
  */
-const childProcess = async ( cmd, args) => {
+const childProcess = async (cmd, args) => {
   const command = new Command(cmd, {
     args,
     cwd: cwd(),
@@ -118,7 +118,7 @@ const all = {
   speedAndSave,
   childProcess,
   mergeAudioVideo,
-  getBVidAndP,
+  getBVIdAndP,
   getArg
 }
 
@@ -128,6 +128,6 @@ export {
   speedAndSave,
   childProcess,
   mergeAudioVideo,
-  getBVidAndP,
+  getBVIdAndP,
   getArg
 }
