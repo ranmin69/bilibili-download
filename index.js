@@ -31,7 +31,7 @@ urlIndex ? await download(args[urlIndex]) : null;
  */
 userIndex ? userVideo(args[userIndex]) : null;
 
-console.log('test');
+console.log('test2');
 
 /**
  * 模仿 浏览器环境 使用 ffmpeg.wasm 来完成音视频合并，始终搞不定，垃圾Deno 😂。
