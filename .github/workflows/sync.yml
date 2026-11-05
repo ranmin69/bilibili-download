@@ -3,7 +3,7 @@ name: Sync to Gitee
 on:
   push:
     branches:
-      - main    # 如果你的默认分支叫 master，请改成 master
+      - master    # 如果你的默认分支叫 master，请改成 master
   workflow_dispatch: # 允许你在 GitHub 网页上手动点击运行
 
 jobs:
